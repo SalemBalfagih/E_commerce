@@ -1,5 +1,6 @@
-import 'package:e_commerce/core/color.dart';
-import 'package:e_commerce/view/HomeScreen.dart';
+import 'package:e_commerce/Themes.dart';
+import 'package:e_commerce/core/colors/color.dart';
+import 'package:e_commerce/view/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -14,9 +15,12 @@ class Ecommerce extends StatelessWidget {
     return GetMaterialApp(
         title: 'Ecommerce',
         debugShowCheckedModeBanner: false,
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.dark,
-        home: const Homescreen()
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColor.backgroundColor,
+          textTheme: textTheme1,
+          useMaterial3: true,
+        ),
+        home: Homescreen()
         // getPages: route
         );
   }

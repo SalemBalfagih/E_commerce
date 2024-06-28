@@ -17,7 +17,8 @@ import 'package:flutter/material.dart';
 class AppColor {
   static const Color secondaryColor =
       Color.fromARGB(255, 255, 255, 255); // لون ثانوي
-  static const Color primaryColor = Color(0xFFFFCA28); // لون أساسي
+  static const Color primaryColor =
+      Color.fromARGB(255, 251, 197, 82); // لون أساسي
   static const Color accentColor = Color(0xFFD81B60); // لون مميز
   static const Color backgroundColor =
       Color.fromARGB(255, 52, 51, 51); // لون الخلفية

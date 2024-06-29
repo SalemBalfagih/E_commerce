@@ -1,66 +1,58 @@
-import 'package:e_commerce/Themes.dart';
-import 'package:e_commerce/controller/homecontroller.dart';
-import 'package:e_commerce/core/colors/color.dart';
+import 'package:e_commerce/controller/product_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 
 class CustomCatogries extends StatelessWidget {
-  const CustomCatogries({
-    super.key,
-    required Homecontroller homecontroller,
-  }) : _homecontroller = homecontroller;
+  final ProductController productcontroller;
 
-  final Homecontroller _homecontroller;
+  const CustomCatogries({required this.productcontroller, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height *
-          0.05, // Adjusted height for better visibility
-
-      child: GetBuilder<Homecontroller>(
-        builder: (controller) {
-          return ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: _homecontroller.items.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  _homecontroller.selectItem(index);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _homecontroller.selectedIndex == index
-                        ? AppColor.primaryColor
-                        : AppColor.secondaryColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  margin: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width *
-                        0.01, // Adjusted margin
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width *
-                        0.03, // Added padding for better spacing
-                    vertical: MediaQuery.of(context).size.height *
-                        0.01, // Added padding for better spacing
-                  ),
-                  child: Center(
-                    child: Text(
-                      "${_homecontroller.items[index]}",
-                      style: textTheme1.displayLarge!.copyWith(
-                        fontSize: 20,
-                        color: AppColor.backgroundColor,
-                      ),
+    return Obx(() {
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: productcontroller.categories.map((category) {
+            return GestureDetector(
+              onTap: () {
+                productcontroller.filterProducts(category);
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.04,
+                    vertical: MediaQuery.of(context).size.height * 0.01),
+                margin: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: MediaQuery.of(context).size.height * 0.01),
+                decoration: BoxDecoration(
+                  color: productcontroller.selectedCategory.value == category
+                      ? Colors.black
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
                     ),
-                  ),
+                  ],
                 ),
-              );
-            },
-          );
-        },
-      ),
-    );
+                child: Text(
+                  category,
+                  style: TextStyle(
+                      color:
+                          productcontroller.selectedCategory.value == category
+                              ? Colors.white
+                              : Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      );
+    });
   }
 }

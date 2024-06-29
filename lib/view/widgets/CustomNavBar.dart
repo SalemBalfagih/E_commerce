@@ -1,17 +1,16 @@
-import 'package:e_commerce/controller/homecontroller.dart';
+import 'package:e_commerce/controller/product_controller.dart';
 import 'package:e_commerce/core/colors/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class CustomNavBar extends StatelessWidget {
+  final ProductController _productcontroller;
+
   const CustomNavBar({
     super.key,
-    required Homecontroller homecontroller,
-  }) : _homecontroller = homecontroller;
-
-  final Homecontroller _homecontroller;
+    required ProductController productcontroller,
+  }) : _productcontroller = productcontroller;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +33,9 @@ class CustomNavBar extends StatelessWidget {
                 filledIcon: Icons.person,
                 outlinedIcon: Icons.person_2_outlined),
           ],
-          selectedIndex: _homecontroller.selectedIndexbar.value,
+          selectedIndex: _productcontroller.selectedIndex.value,
           onItemSelected: (index) {
-            _homecontroller.onItemSelectedbar(index);
+            _productcontroller.onItemSelectedbar(index);
           },
         ));
   }

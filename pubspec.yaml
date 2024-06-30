@@ -41,6 +41,7 @@ dependencies:
   http: ^1.2.1
   shimmer: ^2.0.0
   water_drop_nav_bar: ^2.2.1
+  flutter_staggered_animations: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,9 +65,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - lib/images/photo.jpg
+    - lib/images/photo_2024-06-30_13-23-28.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

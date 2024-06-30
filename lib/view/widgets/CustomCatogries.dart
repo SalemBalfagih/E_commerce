@@ -1,4 +1,5 @@
 import 'package:e_commerce/controller/product_controller.dart';
+import 'package:e_commerce/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,8 @@ class CustomCatogries extends StatelessWidget {
               onTap: () {
                 productcontroller.filterProducts(category);
               },
-              child: Container(
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.04,
                     vertical: MediaQuery.of(context).size.height * 0.01),
@@ -39,14 +41,17 @@ class CustomCatogries extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Text(
-                  category,
-                  style: TextStyle(
-                      color:
-                          productcontroller.selectedCategory.value == category
-                              ? Colors.white
-                              : Colors.black,
-                      fontWeight: FontWeight.bold),
+                child: Center(
+                  child: AnimatedDefaultTextStyle(
+                    duration: Duration(milliseconds: 300),
+                    child: Text(category),
+                    style: textTheme1.bodyMedium!.copyWith(
+                        color:
+                            productcontroller.selectedCategory.value == category
+                                ? Colors.white
+                                : Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             );

@@ -1,24 +1,26 @@
 import 'package:e_commerce/services/api_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce/model/product.dart';
 
 class ProductController extends GetxController {
   var productList = <Product>[].obs;
-  var allProducts = <Product>[].obs; // List to store all products
+  var allProducts = <Product>[].obs;
   var isLoading = true.obs;
   var categories = ["All"].obs;
   var selectedCategory = "All".obs;
   var selectedIndex = 0.obs;
-
-  void onItemSelectedbar(int index) {
-    selectedIndex.value = index;
-  }
-
+  var isFavorite = false.obs;
   @override
   void onInit() {
     fetchProducts();
     fetchCategories();
     super.onInit();
+  }
+
+  void toggleFavorite() {
+    isFavorite.value = !isFavorite.value;
+    update();
   }
 
   void fetchProducts() async {
@@ -41,6 +43,10 @@ class ProductController extends GetxController {
     }
   }
 
+  void onItemSelectedbar(int index) {
+    selectedIndex.value = index;
+  }
+
   void filterProducts(String category) {
     if (category == "All") {
       productList.assignAll(allProducts);
@@ -50,5 +56,17 @@ class ProductController extends GetxController {
       productList.assignAll(filteredProducts);
     }
     selectedCategory(category);
+  }
+
+  void searchProducts(String query) {
+    if (query.isEmpty) {
+      productList.assignAll(allProducts);
+    } else {
+      var filteredProducts = allProducts
+          .where((product) =>
+              product.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      productList.assignAll(filteredProducts);
+    }
   }
 }

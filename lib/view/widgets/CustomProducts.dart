@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/product_controller.dart';
 import 'package:e_commerce/core/colors/color.dart';
+import 'package:e_commerce/model/product.dart';
 import 'package:e_commerce/view/screens/ProductDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ class CustomProducts extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 if (index >= itemCount) return SizedBox(); // Avoid RangeError
+                var product = _productcontroller.productList[index];
                 return AnimationConfiguration.staggeredGrid(
                   position: index,
                   columnCount: 2,
@@ -42,8 +44,7 @@ class CustomProducts extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             Get.to(() => ProductDetailPage(
-                                  product:
-                                      _productcontroller.productList[index],
+                                  product: product,
                                 ));
                           },
                           child: Container(
@@ -83,7 +84,7 @@ class CustomProducts extends StatelessWidget {
                                   children: [
                                     Flexible(
                                       child: Text(
-                                        "\$${_productcontroller.productList[index].price}",
+                                        "\$${product.price}",
                                         style: TextStyle(
                                           fontFamily: "BebasNeue",
                                           fontSize: MediaQuery.of(context)
@@ -97,15 +98,16 @@ class CustomProducts extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        controller.toggleFavorite();
+                                        controller.toggleFavorite(product);
                                       },
                                       child: GetBuilder<ProductController>(
                                         init: ProductController(),
-                                        builder: (controller1) {
+                                        builder: (controller) {
                                           return Icon(
-                                            controller1.isFavorite.value
-                                                ? Icons.favorite_border
-                                                : Icons.favorite,
+                                            controller.favoriteProducts
+                                                    .contains(product)
+                                                ? Icons.favorite
+                                                : Icons.favorite_border,
                                             color: AppColor.accentColor,
                                             size: MediaQuery.of(context)
                                                     .size
@@ -118,22 +120,28 @@ class CustomProducts extends StatelessWidget {
                                   ],
                                 ),
                                 Flexible(
-                                  child: Image.network(
-                                    _productcontroller.productList[index].image,
-                                    fit: BoxFit.contain,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.40,
-                                    width: MediaQuery.of(context).size.height *
-                                        0.40,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Icon(Icons.error,
-                                          color: AppColor.backgroundColor);
-                                    },
+                                  child: Hero(
+                                    tag: 'productImage_${product.id}',
+                                    child: Image.network(
+                                      product.image,
+                                      fit: BoxFit.contain,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.40,
+                                      width:
+                                          MediaQuery.of(context).size.height *
+                                              0.40,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Icon(Icons.error,
+                                            color: AppColor.backgroundColor);
+                                      },
+                                    ),
                                   ),
                                 ),
                                 Flexible(
                                   child: Text(
-                                    _productcontroller.productList[index].title,
+                                    product.title,
                                     style: TextStyle(
                                       fontFamily: "Caveat",
                                       fontSize:

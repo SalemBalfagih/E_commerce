@@ -11,6 +11,7 @@ class ProductController extends GetxController {
   var selectedCategory = "All".obs;
   var selectedIndex = 0.obs;
   var isFavorite = false.obs;
+  var favoriteProducts = <Product>[].obs;
   @override
   void onInit() {
     fetchProducts();
@@ -18,8 +19,12 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
-  void toggleFavorite() {
-    isFavorite.value = !isFavorite.value;
+  void toggleFavorite(Product product) {
+    if (favoriteProducts.contains(product)) {
+      favoriteProducts.remove(product);
+    } else {
+      favoriteProducts.add(product);
+    }
     update();
   }
 

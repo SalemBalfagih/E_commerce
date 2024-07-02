@@ -181,14 +181,16 @@ class CustomAppbarDetail extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon:
+              Icon(Icons.arrow_back, color: AppColor.backgroundColor, size: 30),
           onPressed: () {
             Get.back();
           },
         ),
         Icon(
-          Icons.favorite_border_outlined,
+          Icons.shopping_cart_outlined,
           color: AppColor.backgroundColor,
+          size: 30,
         ),
       ],
     );

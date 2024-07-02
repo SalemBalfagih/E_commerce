@@ -2,31 +2,73 @@ import 'package:e_commerce/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce/model/product.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductController extends GetxController {
   var productList = <Product>[].obs;
   var allProducts = <Product>[].obs;
+
   var isLoading = true.obs;
+
   var categories = ["All"].obs;
   var selectedCategory = "All".obs;
-  var selectedIndex = 0.obs;
+
   var isFavorite = false.obs;
+
   var favoriteProducts = <Product>[].obs;
+
+  var currentIndex = 0.obs;
+
   @override
   void onInit() {
     fetchProducts();
     fetchCategories();
+    loadFavorites();
     super.onInit();
   }
 
-  void toggleFavorite(Product product) {
+  void loadFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? favoriteIds = prefs.getStringList('favoriteProducts');
+    if (favoriteIds != null) {
+      favoriteProducts.assignAll(
+        allProducts
+            .where((product) => favoriteIds.contains(product.id))
+            .toList(),
+      );
+    }
+  }
+
+  Future<void> saveFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    List<String> favoriteIds =
+        favoriteProducts.map((product) => product.id.toString()).toList();
+
+    await prefs.setStringList('favoriteProducts', favoriteIds);
+  }
+
+  void changePage(int index) {
+    currentIndex.value = index;
+  }
+
+  void toggleFavorite(Product product) async {
     if (favoriteProducts.contains(product)) {
       favoriteProducts.remove(product);
     } else {
       favoriteProducts.add(product);
     }
+    await saveFavorites();
     update();
   }
+  // void toggleFavorite(Product product) {
+  //   if (favoriteProducts.contains(product)) {
+  //     favoriteProducts.remove(product);
+  //   } else {
+  //     favoriteProducts.add(product);
+  //   }
+  //   update();
+  // }
 
   void fetchProducts() async {
     isLoading(true);
@@ -46,10 +88,6 @@ class ProductController extends GetxController {
     if (fetchedCategories != null) {
       categories.addAll(fetchedCategories);
     }
-  }
-
-  void onItemSelectedbar(int index) {
-    selectedIndex.value = index;
   }
 
   void filterProducts(String category) {

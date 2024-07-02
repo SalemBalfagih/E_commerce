@@ -1,6 +1,7 @@
 import 'package:e_commerce/Themes.dart';
 import 'package:e_commerce/core/colors/color.dart';
 import 'package:e_commerce/view/screens/HomeScreen.dart';
+import 'package:e_commerce/view/screens/MainScreen.dart';
 import 'package:e_commerce/view/screens/ProductDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class Ecommerce extends StatelessWidget {
         textTheme: textTheme1,
         useMaterial3: true,
       ),
-      home: Homescreen(),
+      home: MainPage(),
       getPages: [
         GetPage(
             name: '/product_detail',

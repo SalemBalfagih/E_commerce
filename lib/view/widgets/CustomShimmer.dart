@@ -17,26 +17,25 @@ class CustomShimmer extends StatelessWidget {
     return Expanded(
       child: Obx(() {
         if (_productcontroller.isLoading.value) {
-          return Expanded(
-            child: GridView.builder(
-              itemCount: 8, // Placeholder item count for shimmer effect
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-              ),
-              itemBuilder: (context, index) {
-                return Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: const Color.fromARGB(255, 69, 68, 68),
-                    child: Container(
-                      margin: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ));
-              },
+          return GridView.builder(
+            //*
+            itemCount: 8, // Placeholder item count for shimmer effect
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1,
             ),
+            itemBuilder: (context, index) {
+              return Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: const Color.fromARGB(255, 69, 68, 68),
+                  child: Container(
+                    margin: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ));
+            },
           );
         } else {
           // Display products

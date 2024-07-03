@@ -1,10 +1,10 @@
 import 'package:e_commerce/controller/product_controller.dart';
 import 'package:e_commerce/core/colors/color.dart';
-import 'package:e_commerce/model/product.dart';
+
 import 'package:e_commerce/view/screens/ProductDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
+
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class CustomProducts extends StatelessWidget {

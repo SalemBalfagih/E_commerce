@@ -1,6 +1,6 @@
 import 'package:e_commerce/core/colors/color.dart';
 import 'package:e_commerce/controller/product_controller.dart';
-import 'package:e_commerce/themes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
@@ -55,22 +55,29 @@ class _CustomSearchState extends State<CustomSearch> {
                     color: AppColor.secondaryColor,
                   ),
                   Expanded(
-                    child: TextFormField(
-                      controller: _searchController,
-                      onChanged: (value) {
-                        // Call search function on each keystroke
-                        _searchProducts(value);
-                      },
-                      style: const TextStyle(
-                        color: AppColor.secondaryColor,
-                        fontFamily: "BebasNeue",
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search your products",
-                        hintStyle: TextStyle(
-                          color: Color.fromARGB(255, 143, 142, 142),
+                      child: TextFormField(
+                        expands: true,
+                        maxLines: null,
+                        controller: _searchController,
+                        onChanged: (value) {
+                          // Call search function on each keystroke
+                          _searchProducts(value);
+                        },
+                        style: const TextStyle(
+                          color: AppColor.secondaryColor,
                           fontFamily: "BebasNeue",
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Search your products",
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 143, 142, 142),
+                            fontFamily: "BebasNeue",
+                          ),
                         ),
                       ),
                     ),

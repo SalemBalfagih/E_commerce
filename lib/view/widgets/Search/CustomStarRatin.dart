@@ -22,8 +22,8 @@ class StarRatingWidget extends StatelessWidget {
           children: List.generate(
             5,
             (index) => index < rating.round()
-                ? Icon(Icons.star, color: Colors.yellow, size: 20)
-                : Icon(Icons.star_border, color: Colors.grey, size: 20),
+                ? const Icon(Icons.star, color: Colors.yellow, size: 20)
+                : const Icon(Icons.star_border, color: Colors.grey, size: 20),
           ),
         ),
         // Reviews Count

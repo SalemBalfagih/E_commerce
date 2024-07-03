@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.2.1
   provider: ^6.1.2
+  share_plus: ^4.0.2
+  url_launcher: ^6.1.7
   http: ^1.2.1
   shimmer: ^2.0.0
   shared_preferences: ^2.0.15
@@ -67,8 +69,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/images/photo.jpg
     - lib/images/photo_2024-06-30_13-23-28.jpg
+    - lib/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

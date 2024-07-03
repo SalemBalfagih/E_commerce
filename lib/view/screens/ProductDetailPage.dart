@@ -2,15 +2,17 @@ import 'package:e_commerce/controller/detail_controller.dart';
 import 'package:e_commerce/core/colors/color.dart';
 import 'package:e_commerce/model/product.dart';
 import 'package:e_commerce/themes.dart';
-import 'package:e_commerce/view/widgets/CustomCounter.dart';
-import 'package:e_commerce/view/widgets/CustomStarRatin.dart';
+import 'package:e_commerce/view/widgets/Details/CustomAppbarDetail.dart';
+import 'package:e_commerce/view/widgets/Details/CustomCounter.dart';
+import 'package:e_commerce/view/widgets/Details/c.dart';
+import 'package:e_commerce/view/widgets/Search/CustomStarRatin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
 
-  ProductDetailPage({required this.product, Key? key}) : super(key: key);
+  ProductDetailPage({required this.product, super.key});
   final _detailController = Get.put(DetailController());
 
   @override
@@ -26,8 +28,8 @@ class ProductDetailPage extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: screenHeight * 0.46,
-                decoration: BoxDecoration(
-                  boxShadow: const [
+                decoration: const BoxDecoration(
+                  boxShadow: [
                     BoxShadow(
                       color: AppColor.primaryColor,
                       spreadRadius: 3,
@@ -48,7 +50,7 @@ class ProductDetailPage extends StatelessWidget {
                     children: [
                       Container(
                         height: screenHeight * 0.06,
-                        child: CustomAppbarDetail(),
+                        child: const CustomAppbarDetail(),
                       ),
                       Hero(
                         tag: 'productImage_${product.id}',
@@ -97,7 +99,7 @@ class ProductDetailPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        StarRatingWidget(
+                        const StarRatingWidget(
                           rating: 4,
                           reviews: 250,
                         ),
@@ -164,64 +166,6 @@ class ProductDetailPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomAppbarDetail extends StatelessWidget {
-  const CustomAppbarDetail({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: AppColor.backgroundColor, size: 30),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        Icon(
-          Icons.shopping_cart_outlined,
-          color: AppColor.backgroundColor,
-          size: 30,
-        ),
-      ],
-    );
-  }
-}
-
-class CustomProductImage extends StatelessWidget {
-  const CustomProductImage({
-    super.key,
-    required this.product,
-  });
-
-  final Product product;
-
-  @override
-  Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
-    return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
-      duration: Duration(milliseconds: 300),
-      builder: (context, double value, child) {
-        return Transform.rotate(
-          angle: value * 6.28, // 360 degrees in radians
-          child: Image.network(
-            product.image,
-            fit: BoxFit.contain,
-            height: screenHeight * 0.35,
-          ),
-        );
-      },
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:e_commerce/services/api_service.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce/model/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';

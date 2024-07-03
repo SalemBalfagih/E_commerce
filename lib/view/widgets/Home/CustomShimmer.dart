@@ -1,5 +1,5 @@
 import 'package:e_commerce/controller/product_controller.dart';
-import 'package:e_commerce/view/widgets/CustomProducts.dart';
+import 'package:e_commerce/view/widgets/Shared/CustomProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:shimmer/shimmer.dart';
@@ -26,12 +26,12 @@ class CustomShimmer extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               return Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: const Color.fromARGB(255, 69, 68, 68),
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
                   child: Container(
                     margin: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ));

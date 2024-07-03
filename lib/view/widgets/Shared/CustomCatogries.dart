@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:e_commerce/controller/product_controller.dart';
 import 'package:e_commerce/themes.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,7 @@ import 'package:get/get.dart';
 class CustomCatogries extends StatelessWidget {
   final ProductController productcontroller;
 
-  const CustomCatogries({required this.productcontroller, Key? key})
-      : super(key: key);
+  const CustomCatogries({required this.productcontroller, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CustomCatogries extends StatelessWidget {
                 productcontroller.filterProducts(category);
               },
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.04,
                     vertical: MediaQuery.of(context).size.height * 0.01),
@@ -43,7 +44,7 @@ class CustomCatogries extends StatelessWidget {
                 ),
                 child: Center(
                   child: AnimatedDefaultTextStyle(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     child: Text(category),
                     style: textTheme1.bodyMedium!.copyWith(
                         color:

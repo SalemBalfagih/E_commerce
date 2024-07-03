@@ -1,13 +1,10 @@
 import 'package:e_commerce/Themes.dart';
 import 'package:e_commerce/core/colors/color.dart';
-import 'package:e_commerce/view/screens/HomeScreen.dart';
+
 import 'package:e_commerce/view/screens/MainScreen.dart';
 import 'package:e_commerce/view/screens/ProductDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 
 void main() {
   runApp(Ecommerce());

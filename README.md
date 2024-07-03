@@ -1,6 +1,13 @@
 # e_commerce
 
-A new Flutter project.
+e_commerce is a Flutter application designed to provide a seamless online shopping experience. This application allows users to browse and search for products, view detailed product descriptions, save favorite items, and learn more about the developer.
+
+# Features
+Product Display: Browse a wide range of products with detailed information and images.
+Product Details: View comprehensive details about each product including price, description, and images.
+Search: Easily find products by searching with keywords.
+Favorites: Save your favorite products for quick access later.
+Developer Profile: Learn more about the developer of the application.
 
 ## Getting Started
 

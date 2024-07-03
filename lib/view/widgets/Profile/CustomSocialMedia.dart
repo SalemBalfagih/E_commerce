@@ -15,25 +15,27 @@ class CustomSocialMedia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationConfiguration.staggeredList(
-      position: 0,
-      duration: Duration(seconds: seconds),
-      child: SlideAnimation(
-        verticalOffset: -50,
-        child: FadeInAnimation(
-          child: InkWell(
-            onTap: onTap,
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).width * 0.02,
-              ),
-              child: CircleAvatar(
-                backgroundColor: AppColor.primaryColor,
-                radius: 25,
+    return Expanded(
+      child: AnimationConfiguration.staggeredList(
+        position: 0,
+        duration: Duration(seconds: seconds),
+        child: SlideAnimation(
+          verticalOffset: -50,
+          child: FadeInAnimation(
+            child: InkWell(
+              onTap: onTap,
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.sizeOf(context).width * 0.02,
+                ),
                 child: CircleAvatar(
-                  backgroundColor: AppColor.secondaryColor,
-                  radius: 23,
-                  backgroundImage: AssetImage(assetName),
+                  backgroundColor: AppColor.primaryColor,
+                  radius: 25,
+                  child: CircleAvatar(
+                    backgroundColor: AppColor.secondaryColor,
+                    radius: 23,
+                    backgroundImage: AssetImage(assetName),
+                  ),
                 ),
               ),
             ),
